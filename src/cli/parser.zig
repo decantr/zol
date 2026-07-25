@@ -2,6 +2,7 @@ const std = @import("std");
 const build_options = @import("build_options");
 
 const main = @import("../main.zig");
+const Auth = @import("auth.zig");
 
 pub fn printHelp() void {
     std.debug.print(main.usage, .{});
@@ -23,5 +24,12 @@ pub fn parseCommand(args: []const []const u8) !void {
     }
     if (std.mem.eql(u8, subcmd, "version") or std.mem.eql(u8, subcmd, "--version")) {
         return printVersion();
+    }
+
+    // auth
+    if (std.mem.eql(u8, subcmd, "auth")) {
+        Auth.parseCommand(args[2..]) catch |err| {
+            return err;
+        };
     }
 }
