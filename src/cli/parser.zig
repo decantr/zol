@@ -1,25 +1,27 @@
 const std = @import("std");
-const Io = std.Io;
+const build_options = @import("build_options");
 
-const version_string = "0.1.0";
-const Writer = *Io.Writer;
+const main = @import("../main.zig");
 
-pub const Command = union(enum) {
-    help,
-    version,
-};
+pub fn printHelp() void {
+    std.debug.print(main.usage, .{});
+    std.process.exit(0);
+}
 
-pub fn parseCommand(args: []const []const u8) !Command {
-    if (args.len < 2) return .help;
+pub fn printVersion() void {
+    std.debug.print("zol : {s}\n", .{build_options.version});
+    std.process.exit(0);
+}
+
+pub fn parseCommand(args: []const []const u8) !void {
+    if (args.len < 2) printHelp();
 
     const subcmd = args[1];
 
     if (std.mem.eql(u8, subcmd, "help") or std.mem.eql(u8, subcmd, "--help") or std.mem.eql(u8, subcmd, "-h")) {
-        return .help;
+        return printHelp();
     }
     if (std.mem.eql(u8, subcmd, "version") or std.mem.eql(u8, subcmd, "--version")) {
-        return .version;
+        return printVersion();
     }
-
-    return error.UsageError;
 }
