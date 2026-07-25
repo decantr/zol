@@ -4,6 +4,7 @@ const build_options = @import("build_options");
 const main = @import("../main.zig");
 const AuthCli = @import("auth.zig");
 const ConfigCli = @import("config.zig");
+const Config = @import("../lib/config.zig");
 
 pub fn printHelp() void {
     std.debug.print(main.usage, .{});
@@ -15,7 +16,7 @@ pub fn printVersion() void {
     std.process.exit(0);
 }
 
-pub fn parseCommand(args: []const []const u8) !void {
+pub fn parseCommand(config: *Config.Config, args: []const []const u8) !void {
     if (args.len < 2) printHelp();
 
     const subcmd = args[1];
@@ -35,7 +36,7 @@ pub fn parseCommand(args: []const []const u8) !void {
     }
 
     if (std.mem.eql(u8, subcmd, "config")) {
-        ConfigCli.parseCommand(args[2..]) catch |err| {
+        ConfigCli.parseCommand(config, args[2..]) catch |err| {
             return err;
         };
     }
