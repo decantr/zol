@@ -42,6 +42,12 @@ pub fn build(b: *std.Build) void {
         .target = target,
     });
 
+    // Expose build-time options (version) to the library module so shared
+    // code (e.g. the HTTP user agent) can reference them.
+    const mod_options = b.addOptions();
+    mod_options.addOption([]const u8, "version", zon.version);
+    mod.addOptions("build_options", mod_options);
+
     // Here we define an executable. An executable needs to have a root module
     // which needs to expose a `main` function. While we could add a main function
     // to the module defined above, it's sometimes preferable to split business

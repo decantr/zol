@@ -1,3 +1,7 @@
+[tasks.build-release]
+description = "Build a release binary"
+run = "zig build -Doptimize=ReleaseFast"
+
 [tools]
 zig = "latest"
 zls = "latest"
