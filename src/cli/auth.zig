@@ -30,6 +30,14 @@ pub fn parseCommand(args: []const []const u8) !void {
         };
     }
 
+    if (std.mem.eql(u8, args[0], "login")) {
+        return login() catch |err| {
+            std.debug.print("Failed login: {s}\n", .{@errorName(err)});
+
+            std.process.exit(1);
+        };
+    }
+
     if (args.len < 2) {
         std.debug.print(auth_usage, .{});
 
@@ -39,4 +47,8 @@ pub fn parseCommand(args: []const []const u8) !void {
 
 pub fn list() !void {
     std.debug.print("list", .{});
+}
+
+pub fn login() !void {
+    std.debug.print("login", .{});
 }
