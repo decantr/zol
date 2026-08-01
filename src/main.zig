@@ -9,17 +9,28 @@ pub const usage: []const u8 =
     \\    zol <command>
     \\
     \\OPTIONS:
-    \\    help               Show this message
-    \\    version            Show zol version
+    \\    help                                Show this message
+    \\    version                             Show zol version
     \\
-    \\    config <command>   Interact with config
-    \\           show        Print the current config
+    \\    config <command>                    Interact with config
+    \\           show                         Print the current config
     \\
-    \\    auth <command>     Interact with auth
-    \\           list        List active sessions
+    \\    auth <command>                      Interact with auth
+    \\           list                         List active sessions
+    \\           login                        Create a new session
+    \\
+    \\    characters <command>                Interact with characters
+    \\           list                         List all known characters
+    \\           set-default <index|name|id>  Set a character as default
+    \\
+    \\    launch                              Launch the configured exe with the default character
+    \\           --character <index|name|id>  Launch with specified character
     \\
     \\CONFIG:
     \\    Location: ~/.config/zol/config.json
+    \\
+    \\SESSION-CACHE:
+    \\    Location: ~/.local/share/zol/sessions.json
     \\
 ;
 
