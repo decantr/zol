@@ -1,5 +1,7 @@
 # Zol - Zig OSRS Launcher
 
+You are probably looking for [Bolt](https://codeberg.org/Adamcake/Bolt).
+
 A minimal, portable session manager and launcher for Jagex accounts (Old School
  RuneScape).
 It manages config, login sessions, and cached characters from the command line,
