@@ -3,5 +3,5 @@ description = "Build a release binary"
 run = "zig build -Doptimize=ReleaseFast"
 
 [tools]
-zig = "latest"
-zls = "latest"
+zig = "0.16.0"
+zls = "0.16.1"
